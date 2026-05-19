@@ -12,7 +12,8 @@
     }
   },
   "bin": {
-    "qmd": "bin/qmd"
+    "qmd": "bin/qmd",
+    "qmd.cmd": "bin/qmd.cmd"
   },
   "files": [
     "bin/",
