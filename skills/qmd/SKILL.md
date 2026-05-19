@@ -170,6 +170,18 @@ Only add collections or generate embeddings when the user asked for setup or
 index maintenance. Searching and retrieving are safe; collection/index mutation is
 not a casual first step.
 
+### Database Location
+
+By default the index is stored at `~/.cache/qmd/index.sqlite`. Set `QMD_DB_DIR`
+to override the database directory:
+
+```bash
+export QMD_DB_DIR=/path/to/db   # database goes to /path/to/db/index.sqlite
+```
+
+Models are cached separately at `~/.cache/qmd/models/` (or `$XDG_CACHE_HOME/qmd/models/`).
+`QMD_DB_DIR` does not move the model cache — use `XDG_CACHE_HOME` for that.
+
 ## MCP Setup
 
 See `references/mcp-setup.md` for Claude Code, Claude Desktop, OpenClaw, and HTTP

@@ -544,8 +544,9 @@ export function getDefaultDbPath(indexName: string = "index"): string {
     );
   }
 
-  const cacheDir = process.env.XDG_CACHE_HOME || resolve(homedir(), ".cache");
-  const qmdCacheDir = resolve(cacheDir, "qmd");
+  const qmdCacheDir = process.env.QMD_DB_DIR
+    ? resolve(process.env.QMD_DB_DIR)
+    : resolve(process.env.XDG_CACHE_HOME || resolve(homedir(), ".cache"), "qmd");
   try { mkdirSync(qmdCacheDir, { recursive: true }); } catch { }
   return resolve(qmdCacheDir, `${indexName}.sqlite`);
 }

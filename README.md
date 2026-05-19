@@ -780,6 +780,16 @@ qmd cleanup
 
 Index stored in: `~/.cache/qmd/index.sqlite`
 
+Override the database directory with `QMD_DB_DIR`:
+
+```sh
+# Store the database in a custom location
+export QMD_DB_DIR=/path/to/db    # database goes to /path/to/db/index.sqlite
+qmd collection add ~/notes --name notes
+```
+
+Models are downloaded separately to `~/.cache/qmd/models/` (controlled by `XDG_CACHE_HOME`).
+
 ### Schema
 
 ```sql
@@ -800,6 +810,7 @@ llm_cache       -- Cached LLM responses (query expansion, rerank scores)
 | `QMD_LLAMA_GPU` | `auto` | Force llama.cpp GPU backend (`metal`, `vulkan`, `cuda`) or disable GPU with `false` |
 | `QMD_FORCE_CPU` | unset | Set to `1`/`true` to force CPU mode before any CUDA/Vulkan/Metal probing. Equivalent CLI flag: `--no-gpu`. |
 | `QMD_EMBED_PARALLELISM` | automatic | Override embedding/reranking context parallelism (1-8). Windows CUDA defaults to `1` because parallel CUDA contexts can crash with `ggml-cuda.cu:98`; use Vulkan or raise this only if your driver is stable. |
+| `QMD_DB_DIR` | `~/.cache/qmd` | Directory for the SQLite database. The database file is `{QMD_DB_DIR}/index.sqlite` (or `{QMD_DB_DIR}/{name}.sqlite` with `--index`). |
 
 ## How It Works
 
